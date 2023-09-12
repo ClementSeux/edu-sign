@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800');
+
+header,
+main {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+body {
+  text-align: -webkit-center;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  list-style-type: none;
+  background: $pale-blue; //Définit le fond sur iOS.
+  overflow-x: hidden;
+  scrollbar-width: none; // Delete Scrollbar, Firefox
+}
+
+::-webkit-scrollbar { // Delete Scrollbar, Safari, Chrome, Edge
+  display: none;
+}
