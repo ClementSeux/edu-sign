@@ -1,10 +1,10 @@
 import { Header, Login } from '../../components/index';
 
-export default function Dashboard() {
+export default function Dashboard({handleTokenReception}) {
   return (
     <>
       <Header />
-      <Login />{' '}
+      <Login handleTokenReception={handleTokenReception}/>{' '}
     </>
   );
 }

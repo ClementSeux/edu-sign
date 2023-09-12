@@ -1,13 +1,15 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Login({setToken}) {
+
+
+export default function Login({handleTokenReception}) {
 
   const getToken = async () => {
     await axios
-    .get('http://localhost:8000/qrcode')
+    .get('http://localhost:8000/token')
     .then((response) => {
-      console.log(response.data);
+      console.log('token reçu', response.data.token);
       return(response.data.token);
     });
   }
@@ -41,9 +43,10 @@ export default function Login({setToken}) {
       )
   }
 
-  useEffect(async () => {
-    let token = await getToken()
-    setToken(token)
+  useEffect( () => {
+
+    getToken().then((token) =>
+    handleTokenReception(token))
   }, []);
 
 
@@ -54,8 +57,4 @@ export default function Login({setToken}) {
       <AuthButton />
     </>
   );
-}
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
 }
