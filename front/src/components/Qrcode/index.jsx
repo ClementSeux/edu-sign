@@ -6,14 +6,14 @@ export default function Qrcode() {
 
   const [hash, setHash] = useState("hey");
 
-  const getHash = async () => {
+  //const getHash = async () => {
     // await axios
     // .get('http://localhost:8000/qrcode')
     // .then((response) => {
     //   console.log(response.data);
     //   setHash(response.data.hash);
     // });
-  }
+  //}
 
   const getQrCode = () => {
 
