@@ -16,19 +16,27 @@ export default function Qrcode() {
   }
 
   const getQrCode = () => {
-
-    // getHash();
-    
-
     return(
-      hash && <QRCode value={hash} />
+     <QRCode value={hash} />
     ) 
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Code à exécuter toutes les 1 seconde
+      getHash()
+    }, 15000); // 1000 ms = 1 seconde
+
+    // Nettoyage de l'effet
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>
       <h2>Scannez ce code</h2>
-      <div id="qrcode"> {getQrCode()}</div>
+      <div id="qrcode"> { hash && getQrCode()}</div>
     </>
   );
 }
