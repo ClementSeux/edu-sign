@@ -1,6 +1,6 @@
 import { Header, Login } from '../../components/index';
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <>
       <Header />
