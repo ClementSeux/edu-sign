@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+/****** Retrieving information via API ******/
+
+axios
+  .get('http://localhost:8000/example')
+  .then((response) => console.log('data', response));
+
+/******* DROPDOWN  *******/
+
 function ProfilDropDown() {
   const [choix, setChoix] = useState('choix1'); // Par défaut, vous pouvez sélectionner une option
 
@@ -20,15 +28,20 @@ function ProfilDropDown() {
   );
 }
 
-export default function Login() {
-  axios
-    .get('http://localhost:8000/example')
-    .then((response) => console.log('data', response));
+/***** AUTHENTIFACTION BUTTON ******/
 
+function AuthButton() {
+    return(
+        <button>Authentification</button>
+    )
+}
+
+export default function Login() {
   return (
     <>
       <h2>Login</h2>
       <ProfilDropDown />
+      <AuthButton />
     </>
   );
 }
