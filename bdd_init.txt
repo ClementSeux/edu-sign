@@ -1,1 +1,33 @@
-SQL
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS presences;
+
+CREATE TABLE users (
+  login VARCHAR(255) PRIMARY KEY,
+  firstname VARCHAR(255),
+  name VARCHAR(255)
+);
+
+CREATE TABLE events (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE presences (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user VARCHAR(255),
+  event INT,
+  FOREIGN KEY (user) REFERENCES users(login),
+  FOREIGN KEY (event) REFERENCES events(id)
+);
+
+INSERT INTO users (login, firstname, name)
+VALUES
+  ('vhugo', 'Victor', 'Hugo'),
+  ('bpascal', 'Blaise', 'Pascal'),
+  ('mcurie', 'Marie', 'Curie'),
+  ('tedison', 'Thomas', 'Edison');
+
+ISERT INTO events (user, event)
+VALUES
+  ('Cours SQL'),('Cours Front'),('Cours Back');
