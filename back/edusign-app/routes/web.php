@@ -22,6 +22,9 @@ Route::middleware(['cors'])->group(function () {
     Route::get('/example', function (){
         return response()->json('texte:OK');
     });
+    Route::get('/qrcode', function(){
+        return response()->json('hash:test');
+    });
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
@@ -30,6 +33,4 @@ Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/login', function (){
     return response()->json('token:test');
 });
-Route::get('/qrcode', function(){
-    return response()->json('hash:test');
-});
+

@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
@@ -16,11 +15,12 @@ class UserFactory extends Factory
     {
         return [
             'login' => 'f.name',
-            'firstname' => $this->faker->firstName(),
-            'name' => $this->faker->name(),
+            'firstname' => $this->withFaker()->firstName(),
+            'name' => $this->withFaker()->lastName(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
-
 
 
 }
