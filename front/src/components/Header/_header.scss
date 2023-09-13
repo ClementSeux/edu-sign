@@ -7,9 +7,28 @@ header{
     position: relative;
 }
 
-.icon{
+.icon-book{
    position: absolute;
    right: 30px;
+   font-size: 22px;
+}
+
+.icon-check__true{
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 15px;
+    color: green;
+
+}
+
+.icon-check__false{
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 15px;
+    color: red;
+
 }
 
 h1{

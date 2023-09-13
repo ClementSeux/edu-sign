@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-export default function Login({ handleTokenReception }) {
+export default function Login({ handleTokenReception, data }) {
   const [APIState, setAPIState] = useState({
     loading: false,
     error: false,
@@ -59,6 +59,9 @@ export default function Login({ handleTokenReception }) {
       console.log('login component sending token', token);
     });
   };
+
+//  const names = data.name;
+//console.log(data.name);
 
   return (
     <>
