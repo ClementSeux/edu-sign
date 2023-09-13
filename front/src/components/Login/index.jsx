@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-export default function Login({handleTokenReception}) {
+export default function Login({ handleTokenReception }) {
   const [APIState, setAPIState] = useState({
     loading: false,
     error: false,
@@ -35,30 +35,29 @@ export default function Login({handleTokenReception}) {
     fetchData();
   }, []);
 
-
-const getToken = async () => {
-  let token = await axios
-  .get('http://localhost:8000/token')
-  .then((response) => {
-    console.log('token reçu', response.data.token);
-    return(response.data.token);
-  });
-  return token
-}
+  const getToken = async () => {
+    let token = await axios
+      .get('http://localhost:8000/token')
+      .then((response) => {
+        console.log('token reçu', response.data.token);
+        return response.data.token;
+      });
+    return token;
+  };
 
   const [choix, setChoix] = useState('choix1'); // Par défaut, vous pouvez sélectionner une option
 
   const handleChoixChange = (e) => {
     setChoix(e.target.value);
   };
-  
-  const authentificate = () => {
 
-    getToken().then((token) =>{
-    handleTokenReception(token);
-    console.log('login component sending token', token);})
+  const authentificate = () => {
+    getToken().then((token) => {
+      handleTokenReception(token);
+      console.log('login component sending token', token);
+    });
   };
-  
+
   return (
     <div>
       <h2>Login</h2>
@@ -73,4 +72,3 @@ const getToken = async () => {
     </div>
   );
 }
-
