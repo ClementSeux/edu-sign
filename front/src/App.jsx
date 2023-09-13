@@ -1,15 +1,34 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
 import { Dashboard, Generator } from './pages/index';
 
 function App() {
+  const [token, setToken] = useState();
+
+  function handleTokenReception(tokenReceived)  {
+    console.log('handler ',tokenReceived)
+    setToken(tokenReceived)
+   
+  }
+  useEffect( () => {
+    console.log('change', token)
+     
+      }, );
+
+  if(!token) {
+    return <Dashboard handleTokenReception={handleTokenReception} />
+  }
+
+
+
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Dashboard />} />
-        <Route exact path="/generator" element={<Generator />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Dashboard handleTokenReception={handleTokenReception} />} />
+          <Route exact path="/generator" element={<Generator />} />
+        </Routes>
+      </Router>
   );
 }
 
