@@ -11,13 +11,16 @@ main {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    background: $light-gray;
-    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
+
+main{
+  height: 100dvh;
+  background: $light-gray;
+}
 
 body {
   text-align: -webkit-center;
