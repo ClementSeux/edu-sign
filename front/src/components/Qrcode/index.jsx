@@ -5,9 +5,6 @@ import QRCode from 'react-qr-code';
 export default function Qrcode() {
   const [hash, setHash] = useState('hey');
 
-
-  const [hash, setHash] = useState("hey");
-
   const getHash = async () => {
     await axios
     .get('http://localhost:8000/qrcode')
