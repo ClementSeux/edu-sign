@@ -19,7 +19,7 @@ export default function Qrcode() {
 
   const getQrCode = () => {
     return(
-     <QRCode value={'http://localhost:5173/signature?hash=' + hash} />
+     <QRCode value={'http://10.104.90.52:5173/signature?hash=' + hash} />
     ) 
   }
 
