@@ -1,13 +1,15 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-/****** Retrieving information via API ******/
-
-// axios
-//   .get('http://localhost:8000/example')
-  //.then((response) => console.log('data', response));
-
-/******* DROPDOWN  *******/
+const getToken = async () => {
+  let token = await axios
+  .get('http://localhost:8000/token')
+  .then((response) => {
+    console.log('token reçu', response.data.token);
+    return(response.data.token);
+  });
+  return token
+}
 
 function ProfilDropDown() {
   const [choix, setChoix] = useState('choix1'); // Par défaut, vous pouvez sélectionner une option
@@ -15,6 +17,8 @@ function ProfilDropDown() {
   const handleChoixChange = (e) => {
     setChoix(e.target.value);
   };
+
+
   return (
     <div>
       <label htmlFor="choix">Connectez vous à votre profil enseignant :</label>
@@ -28,20 +32,24 @@ function ProfilDropDown() {
   );
 }
 
-/***** AUTHENTIFACTION BUTTON ******/
+  
 
-function AuthButton() {
-    return(
-        <button>Authentification</button>
-    )
-}
+ 
+export default function Login({handleTokenReception}) {
 
-export default function Login() {
+
+  const authentificate = () => {
+
+    getToken().then((token) =>{
+    handleTokenReception(token);
+    console.log('login component sending token', token);})
+  };
+
   return (
     <>
       <h2>Login</h2>
       <ProfilDropDown />
-      <AuthButton />
+      <button onClick={authentificate}>Authentification</button>
     </>
   );
 }

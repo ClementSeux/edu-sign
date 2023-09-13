@@ -1,8 +1,9 @@
-import React, { useState, useEffect }  from "react";
-import axios from "axios";
-import QRCode from "react-qr-code";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import QRCode from 'react-qr-code';
 
 export default function Qrcode() {
+
 
   const [hash, setHash] = useState("");
 
@@ -15,20 +16,34 @@ export default function Qrcode() {
     });
   }
 
-  const getQrCode = async () => {
 
-    await getHash();
-    
-
+  const getQrCode = () => {
     return(
-      hash && <QRCode value={hash} />
+     <QRCode value={hash} />
     ) 
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Code à exécuter toutes les 15 secondes
+      getHash()
+    }, 15000); // 1000 ms = 1 seconde
+
+    // Nettoyage de l'effet
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
-    <>
-      <h2>Scannez ce code</h2>
-      <div id="qrcode"> {getQrCode()}</div>
-    </>
+    <section className="bloc-card">
+      <div className="container-card">
+        <div id="qrcode" className="card-qr">
+          {' '}
+          {getQrCode()}
+        </div>
+        <h2>Scannez ce code</h2>
+      </div>
+    </section>
   );
 }
