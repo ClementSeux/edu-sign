@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('login');
             $table->string('firstname');
             $table->string('name');
+            $table->string('status');
             $table->date('created_at');
             $table->date('updated_at');
         });

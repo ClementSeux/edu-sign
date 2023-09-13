@@ -19,7 +19,7 @@ export default function Qrcode() {
 
   const getQrCode = () => {
     return(
-     <QRCode value={'http://localhost:8000/verify?hash=' + hash + '&token=' + token} />
+     <QRCode value={'http://10.104.133.65:8000/verify?hash=' + hash + '&token=' + token} />
     ) 
   }
 
