@@ -16,7 +16,6 @@
     "@uidotdev/usehooks": "^2.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@uidotdev/usehooks": "^2.2.0",
     "axios": "^1.5.0",
     "cors": "^2.8.5",
     "proptypes": "^1.1.0",
