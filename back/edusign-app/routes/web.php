@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QrcodeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,17 +21,19 @@ Route::get('/', function () {
 
 Route::middleware(['cors'])->group(function () {
     Route::get('/example', function (){
-        return response()->json('texte:OK');
+        return response()->json(['texte =>OK']);
     });
-    Route::get('/qrcode', function(){
-        return response()->json('hash:test');
+    Route::get('/qrcode', [QrcodeController::class, 'index']);
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+
+    Route::get('/token', function (){
+        return response()->json(['token' => 'test']);
     });
 });
 
-Route::get('/users', [UserController::class, 'index'])->name('users');
 
 
-Route::get('/login', function (){
-    return response()->json('token:test');
-});
+
+
 
