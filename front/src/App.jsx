@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { Dashboard, Generator } from './pages/index';
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useLocalStorage(null, null);
 
   function handleTokenReception(tokenReceived)  {
     console.log('handler ',tokenReceived)
