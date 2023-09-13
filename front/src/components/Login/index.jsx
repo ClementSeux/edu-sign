@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 /****** Retrieving information via API ******/
 
-axios
-  .get('http://localhost:8000/example')
-  .then((response) => console.log('data', response));
+// axios
+//   .get('http://localhost:8000/example')
+  //.then((response) => console.log('data', response));
 
 /******* DROPDOWN  *******/
 
