@@ -60,9 +60,6 @@ export default function Login({ handleTokenReception, data }) {
     });
   };
 
-//  const names = data.name;
-//console.log(data.name);
-
   return (
     <>
       <h2>Login</h2>
