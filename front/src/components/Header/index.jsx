@@ -11,14 +11,21 @@ export default function Header() {
   return (
     <header>
       {token ? (
-        <FontAwesomeIcon className="icon-check__true" icon={faCircleCheck} />
+        <>
+          <FontAwesomeIcon className="icon-check__true" icon={faCircleCheck} />
+          <p className="icon-book__alertTrue">Déconnexion</p>
+        </>
       ) : (
-        <FontAwesomeIcon className="icon-check__false" icon={faCircleXmark} />
+        <>
+          <FontAwesomeIcon className="icon-check__false" icon={faCircleXmark} />
+          <p className="icon-book__alertFalse">Connexion</p>
+        </>
       )}
       <button
         onClick={() => {
           window.localStorage.clear();
           window.location.reload();
+          window.alert('Utilisateur déconnecté');
         }}
       >
         <FontAwesomeIcon className="icon-book" icon={faBookOpenReader} />
