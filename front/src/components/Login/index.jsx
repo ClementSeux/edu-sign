@@ -1,13 +1,9 @@
-// import axios from 'axios';
-import { useState, useEffect } from 'react';
-
 /****** Retrieving information via API ******/
 
-// axios
-//   .get('http://localhost:8000/example')
-//.then((response) => console.log('data', response));
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-export default function Login() {
+export default function Login({handleTokenReception}) {
   const [APIState, setAPIState] = useState({
     loading: false,
     error: false,
@@ -39,27 +35,42 @@ export default function Login() {
     fetchData();
   }, []);
 
+
+const getToken = async () => {
+  let token = await axios
+  .get('http://localhost:8000/token')
+  .then((response) => {
+    console.log('token reçu', response.data.token);
+    return(response.data.token);
+  });
+  return token
+}
+
   const [choix, setChoix] = useState('choix1'); // Par défaut, vous pouvez sélectionner une option
 
   const handleChoixChange = (e) => {
     setChoix(e.target.value);
   };
+  
+  const authentificate = () => {
 
+    getToken().then((token) =>{
+    handleTokenReception(token);
+    console.log('login component sending token', token);})
+  };
+  
   return (
-    <>
+    <div>
       <h2>Login</h2>
-      <div>
-        <label htmlFor="choix">
-          Connectez vous à votre profil enseignant :
-        </label>
-        <select id="choix" value={choix} onChange={handleChoixChange}>
-          <option value="choix1">Enseignants</option>
-          <option value="choix2">Albus Dumbledore</option>
-          <option value="choix3">Minerva McGonagall</option>
-          <option value="choix4">Severus Rogue</option>
-        </select>
-      </div>
-      <button>Authentification</button>
-    </>
+      <label htmlFor="choix">Connectez vous à votre profil enseignant :</label>
+      <select id="choix" value={choix} onChange={handleChoixChange}>
+        <option value="choix1">Enseignants</option>
+        <option value="choix2">Albus Dumbledore</option>
+        <option value="choix3">Minerva McGonagall</option>
+        <option value="choix4">Severus Rogue</option>
+      </select>
+      <button onClick={authentificate}>Authentification</button>
+    </div>
   );
 }
+
