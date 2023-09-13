@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { Dashboard, Generator, Signature } from './pages/index';
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 function App() {
   const [token, setToken] = useLocalStorage('token', null);
