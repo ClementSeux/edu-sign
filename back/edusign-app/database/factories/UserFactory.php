@@ -11,16 +11,17 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
-        return [
-            'login' => 'f.name',
-            'firstname' => $this->withFaker()->firstName(),
-            'name' => $this->withFaker()->lastName(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ];
-    }
+        public function definition()
+        {
+            return [
+                'login' => 'f.name',
+                'firstname' => $this->withFaker()->firstName(),
+                'name' => $this->withFaker()->lastName(),
+                'status' => $this->withFaker()->randomElement(['enseignant', 'eleve']),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
 
 
 }

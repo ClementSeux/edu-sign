@@ -24,6 +24,7 @@ Route::middleware(['cors'])->group(function () {
         return response()->json(['texte =>OK']);
     });
     Route::get('/qrcode', [QrcodeController::class, 'index']);
+    Route::get('/verify', [QrcodeController::class, 'compareHashes']);
 
     Route::get('/users', [UserController::class, 'index'])->name('users');
 
