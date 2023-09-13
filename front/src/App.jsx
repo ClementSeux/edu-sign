@@ -6,19 +6,21 @@ function App() {
   const [token, setToken] = useState();
 
   function handleTokenReception(tokenReceived)  {
+    console.log('handler ',tokenReceived)
     setToken(tokenReceived)
    
   }
+  useEffect( () => {
+    console.log('change', token)
+     
+      }, );
 
   if(!token) {
     return <Dashboard handleTokenReception={handleTokenReception} />
   }
 
 
-  useEffect( () => {
-console.log('change')
-    console.log(token)
-  }, [token]);
+
 
   return (
       <Router>
