@@ -25,7 +25,9 @@ export default function Login({ handleTokenReception }) {
         }
         const data = await response.json();
         console.log(data);
-        setAPIState({ loading: false, error: false, data });
+        setTimeout(() => {
+          setAPIState({ loading: false, error: false, data });
+        }, 1000);
       } catch (error) {
         setAPIState({ loading: false, error: true, data: undefined });
         console.log(`404`);
@@ -59,16 +61,28 @@ export default function Login({ handleTokenReception }) {
   };
 
   return (
-    <div>
+    <>
       <h2>Login</h2>
-      <label htmlFor="choix">Connectez vous à votre profil enseignant :</label>
-      <select id="choix" value={choix} onChange={handleChoixChange}>
-        <option value="choix1">Enseignants</option>
-        <option value="choix2">Albus Dumbledore</option>
-        <option value="choix3">Minerva McGonagall</option>
-        <option value="choix4">Severus Rogue</option>
-      </select>
-      <button onClick={authentificate}>Authentification</button>
-    </div>
+      {/* Afficher l'état de chargement ou des erreurs */}
+
+      {APIState.loading ? (
+        <p>Loading...</p>
+      ) : APIState.error ? (
+        <p> Impossible de retrouver vos informations</p>
+      ) : (
+        <>
+          <label htmlFor="choix">
+            Connectez vous à votre profil enseignant :
+          </label>
+          <select id="choix" value={choix} onChange={handleChoixChange}>
+            <option value="choix1">Enseignants</option>
+            <option value="choix2">Albus Dumbledore</option>
+            <option value="choix3">Minerva McGonagall</option>
+            <option value="choix4">Severus Rogue</option>
+          </select>
+          <button onClick={authentificate}>Authentification</button>
+        </>
+      )}
+    </>
   );
 }
