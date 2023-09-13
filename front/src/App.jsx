@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { Dashboard, Generator } from './pages/index';
+import { Dashboard, Generator, Signature } from './pages/index';
 
 function App() {
   const [token, setToken] = useLocalStorage(null, null);
@@ -28,6 +28,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Dashboard handleTokenReception={handleTokenReception} />} />
           <Route exact path="/generator" element={<Generator />} />
+          <Route exact path="/signature" element={<Signature />} />
         </Routes>
       </Router>
   );
