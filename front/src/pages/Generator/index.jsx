@@ -4,7 +4,9 @@ export default function Generator() {
   return (
     <>
       <Header />
-      <Qrcode />
+      <main>
+        <Qrcode />
+      </main>
     </>
   );
 }

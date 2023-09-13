@@ -1,22 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+$white: hsl(0, 0%, 100%);
+$light-gray: hsl(212, 45%, 89%);
+$grayish-blue: hsl(220, 15%, 55%);
+$dark-blue: hsl(218, 44%, 22%);
+
 
 header,
 main {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    background: $light-gray;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
 body {
   text-align: -webkit-center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-style: normal;
   list-style-type: none;
-  background: $pale-blue; //Définit le fond sur iOS.
   overflow-x: hidden;
   scrollbar-width: none; // Delete Scrollbar, Firefox
 }
 
 ::-webkit-scrollbar { // Delete Scrollbar, Safari, Chrome, Edge
   display: none;
+}
+
+h2{
+  font-size: 20px;
+  font-weight: 500;
 }
