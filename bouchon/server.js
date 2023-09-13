@@ -25,30 +25,22 @@ app.get("/qrcode", (req, res) => {
 });
 
 //////////POST METHODS
-// app.use(express.json()); //!!!! necessaire pour récupérer le body des requêtes POST
+app.use(express.json()); //!!!! necessaire pour récupérer le body des requêtes POST
 
 // //pour ajouter un log à un user (USER)
-// app.post("/api/stuff", async (req, res, next) => {
-//   console.log("post request received");
-//   const newData = req.body.logs;
-//   console.log("New Data sent by POST request");
-//   console.log(newData);
-//   try {
-//     console.log("appel de mongo en cours");
-//     await client.connect();
-//     console.log("connect done");
-//     await client
-//       .db("gymlogger")
-//       .collection(COLLECTION)
-//       .updateOne({ user: USER }, { $push: { logs: { $each: newData } } });
-//     res.status(201).send("Successfully updated document!");
-//   } catch (e) {
-//     console.error(e);
-//     res.status(500).send("Error updating document");
-//   } finally {
-//     client.close();
-//   }
-// });
+app.post("/verify", async (req, res, next) => {
+    console.log("post request received");
+    const newData = req.body.hash;
+    console.log("New Data sent by POST request");
+    console.log(newData);
+    try {
+        console.log("fetch response");
+        res.status(201).send(JSON.stringify({ response: true }));
+    } catch (e) {
+        console.error(e);
+        res.status(500).send("Error updating document");
+    }
+});
 
 //RUN SERVER
 app.listen(PORT, (err) => {

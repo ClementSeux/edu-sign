@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useLocalStorage } from "@uidotdev/usehooks";
 import axios from 'axios';
 import QRCode from 'react-qr-code';
 
 export default function Qrcode() {
-
-
+  const [token, setToken] = useLocalStorage('token', null);
   const [hash, setHash] = useState("");
 
   const getHash = async () => {
@@ -19,7 +19,7 @@ export default function Qrcode() {
 
   const getQrCode = () => {
     return(
-     <QRCode value={'http://10.104.90.52:5173/signature?hash=' + hash} />
+     <QRCode value={'http://localhost:8000/verify?hash=' + hash + '&token=' + token} />
     ) 
   }
 
