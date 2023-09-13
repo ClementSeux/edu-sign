@@ -7,3 +7,6 @@ export { default as Signature } from './Signature';
 
 // QR GENERATOR
 export { default as Generator } from './Generator';
+
+// PAGE DE CONFIRMATION
+export { default as Confirmation } from './Confirmation';

@@ -60,11 +60,8 @@ export default function Login({ handleTokenReception, data }) {
     });
   };
 
-//  const names = data.name;
-//console.log(data.name);
-
   return (
-    <>
+    <main>
       <h2>Login</h2>
       {/* Afficher l'état de chargement ou des erreurs */}
 
@@ -86,6 +83,6 @@ export default function Login({ handleTokenReception, data }) {
           <button onClick={authentificate}>Authentification</button>
         </>
       )}
-    </>
+    </main>
   );
 }
