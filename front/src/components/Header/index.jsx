@@ -11,10 +11,10 @@ export default function Header() {
   const [token, setToken] = useLocalStorage('token', null);
   return (
     <header>
-      <div className="branding">
+      <a className="branding" href="/">
         <h1>Edusign</h1>
         <FontAwesomeIcon className="branding-icon" icon={faFeather} />
-      </div>
+      </a>
 
       <div className="status-log">
         <button
