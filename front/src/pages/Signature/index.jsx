@@ -1,5 +1,6 @@
 import { Header} from '../../components/index';
 import { useEffect, useState } from 'react';
+import BACK_HOST from "../../../ENV.js"
 import axios from 'axios';
 
 export default function Signature() {
@@ -20,7 +21,7 @@ export default function Signature() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:8000/verify",
+      url: BACK_HOST + "/verify",
       headers: {},
       data: data,
     };

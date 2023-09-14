@@ -19,8 +19,9 @@ export default function Qrcode() {
 
 
   const getQrCode = () => {
+
     return(
-     <QRCode value={BACK_HOST + '/verify?hash=' + hash + '&token=' + token} />
+     <QRCode title = {BACK_HOST + '/verify?hash=' + hash + '&token=' + token} value={BACK_HOST + '/verify?hash=' + hash + '&token=' + token} />
     ) 
   }
 
@@ -28,7 +29,7 @@ export default function Qrcode() {
     const interval = setInterval(() => {
       // Code à exécuter toutes les 15 secondes
       getHash()
-    }, 15000); // 1000 ms = 1 seconde
+    }, 5000); // 1000 ms = 1 seconde
 
     // Nettoyage de l'effet
     return () => {
