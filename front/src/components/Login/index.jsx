@@ -2,10 +2,19 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useLocalStorage } from '@uidotdev/usehooks';
+import useSelectedUser from "../../hook/useSelectedUser";
+import Selector from "../Select/index.jsx"
 
-import BACK_HOST from "../../../ENV.js"
+import ENV from "../../../ENV.js"
 
-export default function Login({ handleTokenReception }) {
+export default function Login() {
+  const BACK_HOST = ENV.BACK_HOST
+  const FRONT_HOST = ENV.FRONT_HOST
+  const [token, setToken] = useLocalStorage('token', null);
+  const [users, setUsers] = useState([]) 
+  const [user, setUser] = useLocalStorage('user', {id : "", name : "", firstname : "", status : "", login : ""});
+  const [selectedUser, setSelectedUser] = useSelectedUser();
   const [APIState, setAPIState] = useState({
     loading: false,
     error: false,
@@ -27,6 +36,7 @@ export default function Login({ handleTokenReception }) {
         }
         const data = await response.json();
         console.log(data);
+        setUsers(data)
         setTimeout(() => {
           setAPIState({ loading: false, error: false, data });
         }, 1000);
@@ -40,13 +50,21 @@ export default function Login({ handleTokenReception }) {
   }, []);
 
   const getToken = async () => {
-    let token = await axios
-      .get(BACK_HOST + '/token?id=' + "5")
+    console.log('id requete', selectedUser)
+    const [authorised, token] = await axios
+      .get(BACK_HOST + '/token?id=' + selectedUser.id)
       .then((response) => {
-        console.log('token reçu', response.data.token);
-        return response.data.token;
+        console.log('token reçu', response);
+        if(response.status === 200){
+          setUser({...selectedUser})
+          return [true, response.data.token];
+        }else{
+          return [false, ""]
+        }        
       });
-    return token;
+    if (authorised){
+      return token;
+    }
   };
 
   const [choix, setChoix] = useState('choix1'); // Par défaut, vous pouvez sélectionner une option
@@ -55,10 +73,16 @@ export default function Login({ handleTokenReception }) {
     setChoix(e.target.value);
   };
 
+  const handleSetSelectedUser = (inputId) => {
+    const selectedUserData = users.find(user => user.id === inputId);
+    setSelectedUser({...selectedUserData})
+  }
+
   const authentificate = () => {
-    getToken().then((token) => {
-      handleTokenReception(token);
-      console.log('login component sending token', token);
+    getToken().then((tokenReceived) => {
+      // handleTokenReception(tokenReceived);
+      setToken(tokenReceived)
+      console.log('login component : received token', tokenReceived);
     });
   };
 
@@ -85,6 +109,8 @@ export default function Login({ handleTokenReception }) {
           <button onClick={authentificate}>Authentification</button>
         </>
       )}
+
+      <Selector selectedUser={selectedUser} setSelectedUser={handleSetSelectedUser} optionsList={users != [] ? users : []}></Selector>
     </main>
   );
 }

@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from "@uidotdev/usehooks";
 import axios from 'axios';
 import QRCode from 'react-qr-code';
-import BACK_HOST from "../../../ENV.js";
+import ENV from "../../../ENV.js";
 
 export default function Qrcode() {
+  const BACK_HOST = ENV.BACK_HOST
+  const FRONT_HOST = ENV.FRONT_HOST
   const [token, setToken] = useLocalStorage('token', null);
+  const [user, setUser] = useLocalStorage('user', {id : "", name : "", firstname : "", status : "", login : ""});
+  
   const [hash, setHash] = useState("");
 
   const getHash = async () => {
@@ -17,15 +21,21 @@ export default function Qrcode() {
     });
   }
 
-
   const getQrCode = () => {
-
-    const url = BACK_HOST + '/verify?hash=' + hash + '&token=' + token + '&id=' + '5'
-
+    const url = FRONT_HOST + '/signature?hash=' + hash 
     return(
-        <QRCode title = {url} value={url} />
-    )
+     <QRCode title = {url} value={url} />
+    ) 
   }
+
+
+
+  // const getQrCode = () => {
+  //   const url = BACK_HOST + '/verify?hash=' + hash + '&token=' + token + '&id=' + user.id
+  //   return(
+  //    <QRCode title = {url} value={url} />
+  //   ) 
+  // }
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -1,8 +1,7 @@
 import { Header, Login } from '../../components/index';
 
-export default function Dashboard() {
- 
-
+export default function LoginPage() {
+  
   return (
     <>
       <Header />

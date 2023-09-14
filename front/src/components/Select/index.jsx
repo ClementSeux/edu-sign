@@ -1,51 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from "@uidotdev/usehooks";
-import axios from 'axios';
-import QRCode from 'react-qr-code';
-import BACK_HOST from "../../../ENV.js";
+import useSelectedUser from "../../hook/useSelectedUser";
 
-export default function Qrcode() {
+import ENV from "../../../ENV.js";
+import Select from "react-select";
+
+export default function Selector({selectedUser, setSelectedUser, optionsList}) {
+  const BACK_HOST = ENV.BACK_HOST
+  const FRONT_HOST = ENV.FRONT_HOST
   const [token, setToken] = useLocalStorage('token', null);
-  const [hash, setHash] = useState("");
+  const [user, setUser] = useLocalStorage('user', {id : "", name : "", firstname : "", status : "", login : ""});
 
-  const getHash = async () => {
-    await axios
-    .get(BACK_HOST + '/qrcode')
-    .then((response) => {
-      console.log(response.data);
-      setHash(response.data.hash);
-    });
-  }
+  const [selected, setSelected] = useState({
+    label: "",
+    value: "",
+  });
 
+  const options = optionsList.map((option) => {
+    return {
+      value: option.id,
+      label: `${option.firstname} ${option.name}`,
+    };
+  });
 
-  const getQrCode = () => {
-
-    return(
-     <QRCode title = {BACK_HOST + '/verify?hash=' + hash + '&token=' + token} value={BACK_HOST + '/verify?hash=' + hash + '&token=' + token} />
-    ) 
-  }
+  const handleChange = (selectedOption) => {
+    console.log(selectedOption)
+    setSelected({... selectedOption});
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Code à exécuter toutes les 15 secondes
-      getHash()
-    }, 5000); // 1000 ms = 1 seconde
+    console.log("selected",selected)
+    setSelectedUser(selected.value);
+  }, [selected.value]);
 
-    // Nettoyage de l'effet
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  useEffect(() => {
+    console.log("selected User",selectedUser)
+  }, [selectedUser.id]);
+
+  useEffect(() => {
+    setSelected({
+      label: `${user['firstname']} ${user['name']}`,
+      value: user['id'],
+    });
+  }, [user["id"]]);
+
+
 
   return (
     <section className="bloc-card">
-      <div className="container-card">
-        <div id="qrcode" className="card-qr">
-          {' '}
-          {getQrCode()}
-        </div>
-        <h2>Scannez ce code</h2>
-      </div>
+     <Select
+            options={options}
+            placeholder={selected.label}
+            onChange={handleChange}
+            value={selected.value}
+          />
+
+        <p>{selectedUser.id} {selectedUser.name}</p>
     </section>
   );
 }
