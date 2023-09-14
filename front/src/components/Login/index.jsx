@@ -2,9 +2,10 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+
 import BACK_HOST from "../../../ENV.js"
 
-export default function Login({ handleTokenReception, data }) {
+export default function Login({ handleTokenReception }) {
   const [APIState, setAPIState] = useState({
     loading: false,
     error: false,
