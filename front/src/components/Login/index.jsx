@@ -3,7 +3,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import BACK_HOST from '../../../ENV.js';
-import { Carousel } from '../index.js';
 
 export default function Login({ handleTokenReception }) {
   const [APIState, setAPIState] = useState({
@@ -60,9 +59,6 @@ export default function Login({ handleTokenReception }) {
 
   return (
     <main>
-      <>
-        <Carousel />
-      </>
       {/* Afficher l'état de chargement ou des erreurs */}
       {APIState.loading ? (
         <p>Loading...</p>
