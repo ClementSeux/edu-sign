@@ -18,6 +18,7 @@ class UserFactory extends Factory
                 'firstname' => $this->withFaker()->firstName(),
                 'name' => $this->withFaker()->lastName(),
                 'status' => $this->withFaker()->randomElement(['enseignant', 'eleve']),
+                'password' => $this->withFaker()->password(8,12),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
