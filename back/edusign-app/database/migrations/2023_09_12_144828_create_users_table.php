@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('name');
             $table->string('status');
+            $table->string('password');
+            $table->integer('token')->nullable();
             $table->date('created_at');
             $table->date('updated_at');
         });
