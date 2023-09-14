@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import BACK_HOST from "../../../ENV.js"
 
 export default function Login({ handleTokenReception, data }) {
   const [APIState, setAPIState] = useState({
@@ -39,7 +40,7 @@ export default function Login({ handleTokenReception, data }) {
 
   const getToken = async () => {
     let token = await axios
-      .get('http://localhost:8000/token')
+      .get(BACK_HOST + '/token')
       .then((response) => {
         console.log('token reçu', response.data.token);
         return response.data.token;
