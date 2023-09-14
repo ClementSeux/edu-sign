@@ -1,6 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Dashboard, Generator, Signature, Confirmation } from './pages/index';
+import {
+  Dashboard,
+  Generator,
+  // Signature,
+  Confirmation,
+  Connect,
+} from './pages/index';
 import { useLocalStorage } from '@uidotdev/usehooks';
 
 function App() {
@@ -11,25 +22,20 @@ function App() {
     setToken(tokenReceived);
   }
 
-  
-  // useEffect( () => {
-  //   setToken('null')
-
-  //     },[] );
-
-  if (!token) {
-    return <Dashboard handleTokenReception={handleTokenReception} />;
-  }
+  // if (!token) {
+  //   return <Connect handleTokenReception={handleTokenReception} />;
+  // }
 
   return (
     <Router>
       <Routes>
+        <Route exact path="/" element={<Dashboard />} />
+        <Route exact path="/generator" element={<Generator />} />
         <Route
           exact
-          path="/"
-          element={<Dashboard handleTokenReception={handleTokenReception} />}
+          path="/login"
+          element={token ? <Generator /> : <Connect />}
         />
-        <Route exact path="/generator" element={<Generator />} />
         <Route exact path="/signature" element={<Signature />} />
         <Route exact path="/confirmation" element={<Confirmation />} />
       </Routes>
