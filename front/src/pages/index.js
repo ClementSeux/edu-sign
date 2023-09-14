@@ -10,3 +10,7 @@ export { default as Generator } from './Generator';
 
 // PAGE DE CONFIRMATION
 export { default as Confirmation } from './Confirmation';
+
+// PAGE DE CONNEXION
+
+export { default as Connect } from './Connect';
