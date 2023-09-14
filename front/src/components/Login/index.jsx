@@ -2,8 +2,8 @@
 
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-
-import BACK_HOST from "../../../ENV.js"
+import BACK_HOST from '../../../ENV.js';
+import { Carousel } from '../index.js';
 
 export default function Login({ handleTokenReception }) {
   const [APIState, setAPIState] = useState({
@@ -17,9 +17,7 @@ export default function Login({ handleTokenReception }) {
     const fetchData = async () => {
       setAPIState({ ...APIState, loading: true });
       try {
-        const response = await fetch(
-          BACK_HOST + '/users',
-        );
+        const response = await fetch(BACK_HOST + '/users');
         console.log(response);
         if (!response.ok) {
           console.log(`500`);
@@ -40,12 +38,10 @@ export default function Login({ handleTokenReception }) {
   }, []);
 
   const getToken = async () => {
-    let token = await axios
-      .get(BACK_HOST + '/?id=' + "5")
-      .then((response) => {
-        console.log('token reçu', response.data.token);
-        return response.data.token;
-      });
+    let token = await axios.get(BACK_HOST + '/?id=' + '5').then((response) => {
+      console.log('token reçu', response.data.token);
+      return response.data.token;
+    });
     return token;
   };
 
@@ -64,9 +60,10 @@ export default function Login({ handleTokenReception }) {
 
   return (
     <main>
-      <h2>Login</h2>
+      <>
+        <Carousel />
+      </>
       {/* Afficher l'état de chargement ou des erreurs */}
-
       {APIState.loading ? (
         <p>Loading...</p>
       ) : APIState.error ? (
