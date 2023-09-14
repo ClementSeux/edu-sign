@@ -21,7 +21,7 @@ export default function Qrcode() {
   const getQrCode = () => {
 
     return(
-     <QRCode title = {BACK_HOST + '/verify?hash=' + hash + '&token=' + token} value={BACK_HOST + '/verify?hash=' + hash + '&token=' + token} />
+     <QRCode title = {BACK_HOST + '/verify?hash=' + hash + '&token=' + token + '&id=' + '5'} value={BACK_HOST + '/verify?hash=' + hash + '&token=' + token} />
     ) 
   }
 
