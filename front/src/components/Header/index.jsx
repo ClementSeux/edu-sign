@@ -25,7 +25,6 @@ export default function Header() {
         onClick={() => {
           window.localStorage.clear();
           window.location.reload();
-          window.alert('Utilisateur déconnecté');
         }}
       >
         <FontAwesomeIcon className="icon-book" icon={faBookOpenReader} />
