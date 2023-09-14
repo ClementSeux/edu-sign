@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import {
   Dashboard,
   Generator,
-  // Signature,
+  Signature,
   Confirmation,
   Connect,
 } from './pages/index';
