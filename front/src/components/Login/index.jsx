@@ -37,7 +37,10 @@ export default function Login({ handleTokenReception }) {
   }, []);
 
   const getToken = async () => {
-    let token = await axios.get(BACK_HOST + '/?id=' + '5').then((response) => {
+
+    // await axios.get(BACK_HOST + '/?id=' + '5') 🚩
+    // Remplacer '/token' quand l'état de test terminé
+    let token = await axios.get(BACK_HOST + '/token').then((response) => {
       console.log('token reçu', response.data.token);
       return response.data.token;
     });
