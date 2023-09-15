@@ -20,11 +20,6 @@ export default function Signature() {
   const searchParams = new URLSearchParams(location.search);
   const hash = searchParams.get('hash');
 
-
-  // const redirect = ()=>{
-  //   window.location.href= FRONT_HOST + "/confirmation"   
-  // }
-
    
   const sendRequest =async () => {
     console.log('sending request')
@@ -56,18 +51,22 @@ console.log(requestStatus)
     if(requestStatus === "accepted"){
       return <Confirmation />
     }else if (requestStatus === "waiting"){
-      <>
-        <Header />
-        <h2> Connexion ok </h2>
-        <p> Scanner le QR </p>
-      </>
+      return(
+        <>
+          <Header />
+          <h2> Connexion ok </h2>
+          <p> Scanner le QR </p>
+        </>
+      )
     } else{
-      <>
-        <Header />
-        <h2> Connexion ok </h2>
-        <p> Le QR Code scanné n'est plus valide </p>
-        <p> Merci de réessayer </p>
-      </>
+      return( 
+        <>
+          <Header />
+          <h2> Connexion ok </h2>
+          <p> Le QR Code scanné n'est plus valide </p>
+          <p> Merci de réessayer </p>
+        </>
+      )
     }
   }
 
