@@ -22,8 +22,6 @@ class QrcodeController extends Controller
     }
 
     public function compareHashes(Request $request){
-        $accepted = 'http://10.47.131.189:5173/confirmation';
-        $refused = 'http://10.47.131.189:5173';
         $key= 'base64:0H+BMjqwP2qAKOqIthUWuH+3HB7/n/KutmKUBJ9ArHE=';
 
         $requestHash = $request->query('hash');
@@ -31,8 +29,6 @@ class QrcodeController extends Controller
         $carbonDate = Carbon::make($decryptedData);
 
         $difference = $carbonDate->diffInSeconds(Carbon::now('Europe/Paris')->addHour(2));
-
-        // dd($difference);
 
         if ($difference <= 30 ){
             DB::table('presences')->insert([
