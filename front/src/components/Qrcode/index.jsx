@@ -24,7 +24,7 @@ export default function Qrcode() {
   const getQrCode = () => {
     const url = FRONT_HOST + '/signature?hash=' + hash 
     return(
-     <QRCode title = {url} value={url} />
+      <QRCode title = {url} value={url}/>     
     ) 
   }
 

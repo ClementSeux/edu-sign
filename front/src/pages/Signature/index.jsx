@@ -22,20 +22,24 @@ export default function Signature() {
   const navigate = useNavigate();
 
   const redirect = ()=>{
-    navigate(FRONT_HOST + "/confirmation")   
+    window.location.href= FRONT_HOST + "/confirmation"   
   }
  
   const sendRequest =async () => {
     console.log('sending request')
     const url = BACK_HOST + '/verify?hash=' + hash + '&token=' + token + '&id=' + user.id
+    console.log('url ou j envoie le hash', url)
     await axios
       .get(url)
       .then((response) => {
         console.log('message recu', response);
-        });
+        if(response.data.reponse === "ok"){
+          redirect()
+        }
+      }
+    );
   }
 
-  
 console.log(hash)
   useEffect(()=>{
     if(hash != undefined){
