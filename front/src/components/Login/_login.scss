@@ -1,0 +1,24 @@
+.password-field {
+  margin: 2em 0 2em 0;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  border: 2px solid grey;
+  background-color: white;
+  height: 2.6em;
+  width: 12em;
+}
+
+.auth-button {
+  background-color: #0093af;
+  padding: 1em;
+  color: white;
+  font-weight: 600;
+}
+
+.red-alert {
+  color: red;
+  opacity: 0%;
+  &.visible {
+    opacity: 100%;
+  }
+}

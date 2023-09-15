@@ -1,5 +1,5 @@
-const BACK_HOST = 'http://10.47.128.64:8000';
-const FRONT_HOST = 'http://10.47.131.189:5173';
+const BACK_HOST = 'http://10.104.133.65:8000';
+const FRONT_HOST = 'http://10.104.131.174:5173';
 
 const ENV = {
   BACK_HOST: BACK_HOST,

@@ -18,6 +18,7 @@
 
 .banner-teachers,
 .banner-students {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,14 +46,18 @@
   z-index: 1;
 }
 
-.banner-teachers__img:hover,
-.banner-students__img:hover {
-  transform: scale(1.1); /* Ajustez la valeur selon vos préférences */
-  z-index: 2;
+.banner-teachers:hover,
+.banner-students:hover {
+  .banner-teachers__img,
+  .banner-students__img {
+    transform: scale(1.1); /* Ajustez la valeur selon vos préférences */
+    z-index: 2;
+  }
 }
 
 .banner-teachers__title,
 .banner-students__title {
+  // pointer-events: none;
   position: absolute;
   transform: scale(1.1);
   transition: transform 0.3s ease-in-out;

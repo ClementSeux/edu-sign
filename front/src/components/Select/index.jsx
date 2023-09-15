@@ -50,13 +50,19 @@ export default function Selector({selectedUser, setSelectedUser, optionsList}) {
   return (
     <section className="bloc-card">
      <Select
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            border : state.isFocused ? '#7C9ED9' : '#0093AF',
+            width : '12em'
+          }),
+        }}
+
             options={options}
             placeholder={selected.label}
             onChange={handleChange}
             value={selected.value}
           />
-
-        <p>{selectedUser.id} {selectedUser.name}</p>
     </section>
   );
 }

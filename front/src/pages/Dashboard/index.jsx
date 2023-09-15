@@ -20,6 +20,7 @@ export default function Dashboard() {
   const homePage = () => {
     return (
       <>
+      <Header />
         <h2 className='dashboard-title'>
           5x plus rapide ! 
           <ul>
