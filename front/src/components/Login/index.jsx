@@ -8,7 +8,7 @@ import Selector from "../Select/index.jsx"
 
 import ENV from "../../../ENV.js"
 
-export default function Login() {
+export default function Login({statusSelected}) {
   const BACK_HOST = ENV.BACK_HOST
   const FRONT_HOST = ENV.FRONT_HOST
   const [token, setToken] = useLocalStorage('token', null);
@@ -67,15 +67,12 @@ export default function Login() {
     }
   };
 
-  const [choix, setChoix] = useState('choix1'); // Par défaut, vous pouvez sélectionner une option
-
-  const handleChoixChange = (e) => {
-    setChoix(e.target.value);
-  };
+ 
 
   const handleSetSelectedUser = (inputId) => {
     const selectedUserData = users.find(user => user.id === inputId);
     setSelectedUser({...selectedUserData})
+    
   }
 
   const authentificate = () => {
@@ -90,27 +87,17 @@ export default function Login() {
     <main>
       <h2>Login</h2>
       {/* Afficher l'état de chargement ou des erreurs */}
-
+      <h4>{statusSelected}</h4>
       {APIState.loading ? (
         <p>Loading...</p>
       ) : APIState.error ? (
         <p> Impossible de retrouver vos informations</p>
       ) : (
         <>
-          <label htmlFor="choix">
-            Connectez vous à votre profil enseignant :
-          </label>
-          <select id="choix" value={choix} onChange={handleChoixChange}>
-            <option value="choix1">Enseignants</option>
-            <option value="choix2">Albus Dumbledore</option>
-            <option value="choix3">Minerva McGonagall</option>
-            <option value="choix4">Severus Rogue</option>
-          </select>
-          <button onClick={authentificate}>Authentification</button>
+          <Selector selectedUser={selectedUser} setSelectedUser={handleSetSelectedUser} optionsList={users != [] ? users.filter(item => item.status === statusSelected) : []}></Selector>
+          <button onClick={authentificate}>Authentification</button>          
         </>
-      )}
-
-      <Selector selectedUser={selectedUser} setSelectedUser={handleSetSelectedUser} optionsList={users != [] ? users : []}></Selector>
+      )}      
     </main>
   );
 }

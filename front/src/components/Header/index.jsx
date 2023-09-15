@@ -8,12 +8,20 @@ import { useLocalStorage } from '@uidotdev/usehooks';
 
 export default function Header() {
   const [token, setToken] = useLocalStorage('token', null);
+  const [user, setUser] = useLocalStorage('user', {id : "", name : "", firstname : "", status : "", login : ""});
+ 
+
   return (
     <header>
       {token ? (
         <>
+          {/* <p>{user.firstname user.name}</p> */}
           <FontAwesomeIcon className="icon-check__true" icon={faCircleCheck} />
-          <p className="icon-book__alertTrue">Déconnexion</p>
+          <div className="icon-book__alertTrue">
+          <p >{user.firstname + " " +user.name}</p>
+          <p >Déconnexion </p>
+          </div>
+          
         </>
       ) : (
         <>
