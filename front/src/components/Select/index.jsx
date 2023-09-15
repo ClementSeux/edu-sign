@@ -26,6 +26,7 @@ export default function Selector({selectedUser, setSelectedUser, optionsList}) {
   const handleChange = (selectedOption) => {
     console.log(selectedOption)
     setSelected({... selectedOption});
+    console.log(optionsList)
   };
 
   useEffect(() => {
